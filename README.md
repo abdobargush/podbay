@@ -4,9 +4,11 @@ A modern Arabic podcast search application that provides a comprehensive platfor
 
 🌐 **Live Demo**: [https://podbay-nextjs.onrender.com/](https://podbay-nextjs.onrender.com/)
 
+![Screenshot](SCREENSHOT.png)
+
 ## 🎯 Project Overview
 
-Podbay is a podcast discovery platform designed specifically for Arabic content, featuring real-time search capabilities, responsive design, and a clean, modern interface. The application allows users to search for podcasts and episodes from multiple vendors, with results stored locally for optimal performance.
+Podbay clone is a podcast discovery platform built as a job application assignment during hiring proces, featuring real-time search capabilities, responsive design, and a clean, modern interface. The application allows users to search for podcasts and episodes, with results stored locally for optimal performance.
 
 ## 🏗️ Architecture
 
@@ -167,7 +169,7 @@ GET /search?term={searchTerm}
   "podcasts": [
     {
       "id": "string",
-      "title": "string",
+      "name": "string",
       "artworkUrl": "string",
       "artist": {
         "name": "string",
@@ -178,11 +180,11 @@ GET /search?term={searchTerm}
   "episodes": [
     {
       "id": "string",
-      "title": "string",
+      "name": "string",
       "description": "string",
       "durationMillis": "number",
       "releaseDate": "string",
-      "podcast": {
+      "podcasts": {
         "name": "string",
         "link": "string"
       }
@@ -231,7 +233,7 @@ npm run start
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE.txt).
 
 ## 🤝 Contributing
 
