@@ -59,7 +59,7 @@ This backend service powers the Podbay clone podcast search application, providi
     NODE_ENV=dev
     ```
 
-4.  Run database migrations:
+4.  Run database migrations: (Optional on dev as typeorm automatically syncs the database)
     ```bash
     npm run migration:run
     ```
@@ -73,11 +73,16 @@ This backend service powers the Podbay clone podcast search application, providi
   ```
 
 - **Production Mode:**
+
+  ```bash
+  npm run build
+  ```
+
   ```bash
   npm run start:prod
   ```
 
-The application will typically run on `http://localhost:3000` (or the `PORT` specified in your `.env` file).
+The application will typically run on `http://localhost:3001` (or the `PORT` specified in your `.env` file).
 
 ## API Endpoints
 
@@ -94,7 +99,7 @@ Searches for podcasts and episodes based on a given term from configured vendors
 **Example Request:**
 
 ```plaintext
-GET http://localhost:3000/search?term=فنجان
+GET http://localhost:3001/search?term=فنجان
 ```
 
 **Example Response:**

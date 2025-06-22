@@ -137,7 +137,6 @@ NODE_ENV=dev
 ```bash
 cd backend
 npm install
-npm run migration:run
 npm run start:dev
 ```
 
@@ -199,8 +198,7 @@ GET /search?term={searchTerm}
 
 ```bash
 cd backend
-npm test                    # Run all tests
-npm run test:e2e           # Run end-to-end tests
+npm run test                    # Run all tests
 ```
 
 ### Frontend
