@@ -83,7 +83,7 @@ frontend/
 Create a `.env.local` file:
 
 ```env
-API_URL=http://localhost:3001/api
+API_URL=http://localhost:3001
 ```
 
 ### Installation
