@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-arabic: var(--font-handjet);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.hn {
+  @apply align-middle !leading-normal;
+}
+
+.text-shadow-logo {
+  text-shadow: 2px 2px 0 var(--color-blue-600), -2px -2px 0 var(--color-red-600);
+}
+
+.swiper-pagination-progressbar-fill {
+  background: linear-gradient(
+    to left,
+    var(--color-blue-600),
+    var(--color-red-600)
+  ) !important;
+  transform-origin: 100% 0 !important;
+}
