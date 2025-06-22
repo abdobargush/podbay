@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useTransition } from "react";
 import { useDebounceValue } from "usehooks-ts";
 
 const SearchForm = () => {
   const router = useRouter();
+  const [isSearching, startTransition] = useTransition();
 
   const searchTerm = useSearchParams().get("term");
   const [term, setTerm] = useDebounceValue(searchTerm || "", 500);
@@ -15,7 +16,9 @@ const SearchForm = () => {
       return;
     }
     if (term.length < 3) return;
-    router.push(`/?term=${encodeURIComponent(term)}`);
+    startTransition(() => {
+      router.push(`/?term=${encodeURIComponent(term)}`);
+    });
   };
   useEffect(handleSearch, [term, router]);
 
@@ -25,7 +28,11 @@ const SearchForm = () => {
         htmlFor="search-input"
         className="absolute right-4 md:right-6 top-1/2 transform -translate-y-1/2 text-neutral-300"
       >
-        <i className="hn hn-search"></i>
+        {isSearching ? (
+          <i className="hn hn-spinner-third-solid inline-block animate-spin"></i>
+        ) : (
+          <i className="hn hn-search"></i>
+        )}
       </label>
       <input
         type="text"
