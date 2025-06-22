@@ -112,7 +112,7 @@ podbay/
 
 ### Environment Setup
 
-#### Frontend (.env.local)
+#### Frontend (.env)
 
 ```env
 API_URL=http://localhost:3001

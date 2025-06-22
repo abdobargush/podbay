@@ -80,7 +80,7 @@ frontend/
 
 ### Environment Variables
 
-Create a `.env.local` file:
+Create a `.env` file:
 
 ```env
 API_URL=http://localhost:3001
