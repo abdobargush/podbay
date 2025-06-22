@@ -19,6 +19,7 @@ const config = {
   migrations: [join(__dirname, '..', 'migrations', '*.{ts,js}')],
   synchronize: process.env.NODE_ENV === 'dev',
   logging: process.env.NODE_ENV === 'dev',
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
 };
 
 export default registerAs('typeorm', () => config);
