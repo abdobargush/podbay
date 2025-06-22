@@ -1,6 +1,10 @@
-# خليج البودكاست (Podbay Clone Backend)
+# Podbay Clone Backend (خليج البودكاست )
 
 This is the backend service for Podbay clone, a podcast search application. It is built with NestJS and designed to be scalable and support multiple podcast vendors.
+
+## 🎯 Overview
+
+This backend service powers the Podbay clone podcast search application, providing a comprehensive REST API for podcast and episode discovery. Built with enterprise-grade architecture patterns, it offers multi-vendor integration capabilities, intelligent data caching, and robust error handling.
 
 ## Features
 

@@ -1,4 +1,4 @@
-# خليج البودكاست (Podbay Clone Frontend)
+# Podbay Clone Frontend (خليج البودكاست )
 
 A modern Arabic podcast search frontend built with Next.js 15, featuring real-time search, responsive design, and smooth animations.
 
