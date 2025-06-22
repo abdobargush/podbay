@@ -11,6 +11,7 @@ export type Episode = {
   durationMillis: number;
   artwork: string;
   link: string;
+  fileUrl: string;
   fileExtention: string;
   createdAt: Date;
   updatedAt: Date;

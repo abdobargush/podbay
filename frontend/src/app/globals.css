@@ -39,3 +39,10 @@ body {
   ) !important;
   transform-origin: 100% 0 !important;
 }
+
+.rhap_container {
+  @apply !bg-transparent;
+}
+.rhap_time {
+  @apply !text-foreground/50;
+}

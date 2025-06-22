@@ -52,6 +52,7 @@ export class ItunesVendor implements Vendor<ItunesResult> {
       link: data.trackViewUrl,
       releaseDate: new Date(data.releaseDate),
       durationMillis: data.trackTimeMillis,
+      fileUrl: data.episodeUrl,
       fileExtention: data.episodeFileExtension,
       artwork: data.artworkUrl160,
       vendor: this.name,

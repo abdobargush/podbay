@@ -45,6 +45,9 @@ export class Episode<T = unknown> {
   link: string;
 
   @Column({ nullable: true })
+  fileUrl: string;
+
+  @Column({ nullable: true })
   fileExtention: string;
 
   @Column({ type: 'json', nullable: true })

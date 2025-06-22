@@ -4,6 +4,7 @@ import { Episode, LayoutOptions } from "@/types";
 import dayjs from "@/lib/dayjs";
 import Image from "next/image";
 import { useMemo } from "react";
+import { usePlayer } from "./Player";
 
 const EpisodeCard = ({
   episode,
@@ -12,6 +13,8 @@ const EpisodeCard = ({
   episode: Episode;
   activeLayoutOption?: LayoutOptions;
 }) => {
+  const { setCurrentEpisode, togglePlayPause, currentEpisode, isPlaying } =
+    usePlayer();
   const { background, color } = useRandomColorHelper(episode.id);
 
   const duration = useMemo(() => {
@@ -22,6 +25,13 @@ const EpisodeCard = ({
     return `${minutes}:${String(seconds).padStart(2, "0")}`;
   }, [episode.durationMillis]);
 
+  const handleEpisodePlayPause = () => {
+    if (currentEpisode?.id !== episode.id) {
+      setCurrentEpisode(episode);
+    }
+    togglePlayPause();
+  };
+
   return (
     <div
       className={cn(
@@ -29,19 +39,29 @@ const EpisodeCard = ({
         background
       )}
     >
-      <a href={episode.link} target="_blank">
+      <button
+        className="relative cursor-pointer group overflow-hidden rounded-r"
+        onClick={handleEpisodePlayPause}
+      >
+        <div className="absolute flex inset-0 w-full h-full items-center justify-center bg-background/50 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+          {isPlaying && currentEpisode?.id === episode.id ? (
+            <i className="hn hn-pause-solid text-2xl"></i>
+          ) : (
+            <i className="hn hn-play-solid text-2xl"></i>
+          )}
+        </div>
         <Image
           src={episode.artwork}
           alt={episode.name}
           width={activeLayoutOption === LayoutOptions.GRID ? 108 : 186}
           height={activeLayoutOption === LayoutOptions.GRID ? 108 : 186}
-          className={cn("rounded-r", {
+          className={cn({
             "h-42 w-42 md:h-[186px] md:w-[186px]":
               activeLayoutOption === LayoutOptions.LIST,
             "h-[108px] w-[108px]": activeLayoutOption === LayoutOptions.GRID,
           })}
         />
-      </a>
+      </button>
       <div
         className={cn("flex-1 flex flex-col overflow-hidden", {
           "p-2 pr-4": activeLayoutOption === LayoutOptions.GRID,
