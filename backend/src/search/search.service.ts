@@ -23,6 +23,14 @@ export class SearchService {
     private artistService: ArtistService,
   ) {}
 
+  /**
+   * Suggested Improvements:
+   * 1. Implement pagination
+   * 2. Caching system for search terms to reduce API calls
+   * 3. Use full-text search for better results
+   * 4. Paralleize storing data to improve performance
+   * 5. Defer to background jobs for fetching and cleaning data
+   */
   async search({ term, limit }: SearchQueryDto) {
     let podcasts: VendorPodcast[] = [];
     let episodes: VendorEpisode[] = [];
@@ -58,7 +66,7 @@ export class SearchService {
 
   /**
    * This verison makes use of bulk operations
-   * It's O(1) on the database level which gives potential performance gains
+   * It's O(1) database calls which gives potential performance gains
    */
   private async storePodcasts(podcasts: VendorPodcast[]) {
     const artists = podcasts
@@ -86,7 +94,7 @@ export class SearchService {
 
   /**
    * This version makes use of sequential operations
-   * It's O(n) on the database level but it's straightforward logic
+   * It's O(n)  database calls but it's straightforward logic
    * And has the upside of handling one record at a time which is better for error handling
    */
   // private async storePodcasts(podcasts: VendorPodcast[]) {
@@ -127,7 +135,7 @@ export class SearchService {
 
   /**
    * This verison makes use of bulk operations
-   * It's O(1) on the database level which gives potential performance gains
+   * It's O(1) database calls which gives potential performance gains
    */
   private async storeEpisodes(episodes: VendorEpisode[]) {
     const podcasts = episodes
@@ -155,7 +163,7 @@ export class SearchService {
 
   /**
    * This version makes use of sequential operations
-   * It's O(n) on the database level but it's straightforward logic
+   * It's O(n) database calls but it's straightforward logic
    * And has the upside of handling one record at a time which is better for error handling
    */
   // private async storeEpisodes(episodes: VendorEpisode[]) {

@@ -1,98 +1,142 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# خليج البودكاست (Podbay Clone Backend)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is the backend service for Podbay clone, a podcast search application. It is built with NestJS and designed to be scalable and support multiple podcast vendors.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **Podcast Search:** Provides a REST API endpoint to search for podcasts using a given term.
+- **Multi-Vendor Support:** Designed to integrate with various podcast vendors (currently supports iTunes Search API) for easy scalability.
+- **Data Persistence:** Stores search results (podcasts and episodes) in a PostgreSQL database to reduce redundant API calls and provide a local data source.
+- **Robust API:** Built with NestJS, offering a modular, testable, and maintainable architecture.
+- **Automated Testing:** Covered by unit and end-to-end tests to ensure reliability and correctness.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Technologies Used
 
-## Project setup
+- **Framework:** [NestJS](https://nestjs.com/) (TypeScript)
+- **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **ORM:** [TypeORM](https://typeorm.io/)
+- **Validation:** `class-validator` and `class-transformer`
+- **HTTP Client:** `axios`
+- **Testing:** Jest, Supertest
 
-```bash
-$ npm install
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS version recommended)
+- npm or Yarn
+- PostgreSQL database
+
+### Installation
+
+1.  Clone the repository:
+
+    ```bash
+    git clone https://github.com/your-repo/podbay.git
+    cd podbay/backend
+    ```
+
+2.  Install dependencies:
+
+    ```bash
+    npm install
+    # or yarn install
+    ```
+
+3.  Create a `.env` file in the `backend/` directory based on `.env.example` and configure your database connection and other environment variables:
+
+    ```
+    PORT=3000
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_USERNAME=postgres
+    DB_PASSWORD=postgres
+    DB_DATABASE=podbay
+    NODE_ENV=dev
+    ```
+
+4.  Run database migrations:
+    ```bash
+    npm run migration:run
+    ```
+
+### Running the Application
+
+- **Development Mode (with watch):**
+
+  ```bash
+  npm run start:dev
+  ```
+
+- **Production Mode:**
+  ```bash
+  npm run start:prod
+  ```
+
+The application will typically run on `http://localhost:3000` (or the `PORT` specified in your `.env` file).
+
+## API Endpoints
+
+### Search Podcasts and Episodes
+
+`GET /search`
+
+Searches for podcasts and episodes based on a given term from configured vendors (e.g., iTunes) and stores them in the database.
+
+**Query Parameters:**
+
+- `term` (string, required): The search term (e.g., "فنجان").
+
+**Example Request:**
+
+```plaintext
+GET http://localhost:3000/search?term=فنجان
 ```
 
-## Compile and run the project
+**Example Response:**
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```json
+{
+  "podcasts": [
+    // ... list of podcast objects ...
+  ],
+  "episodes": [
+    // ... list of episode objects ...
+  ]
+}
 ```
 
-## Run tests
+## Testing
+
+- Run all tests:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm test
 ```
 
-## Deployment
+## Project Structure
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
+```plaintext
+backend/
+├── src/
+│   ├── app.module.ts         # Main application module
+│   ├── main.ts               # Application entry point
+│   ├── artist/               # Artist-related modules, services, entities
+│   ├── episode/              # Episode-related modules, services, entities
+│   ├── podcast/              # Podcast-related modules, services, entities
+│   ├── search/               # Search functionality (controller, service, module)
+│   ├── vendor/               # Vendor integration (e.g., iTunes API client)
+│   └── migrations/           # TypeORM database migrations
+├── test/                     # End-to-end tests
+├── .env.example              # Example environment variables
+├── package.json              # Project dependencies and scripts
+└── tsconfig.json             # TypeScript configuration
 ```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License.
+
+---
+
+Built with ❤️ and backpain.
