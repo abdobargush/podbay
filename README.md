@@ -2,7 +2,7 @@
 
 A modern Arabic podcast search application that provides a comprehensive platform for discovering podcasts and episodes. Built as a full-stack solution with a responsive frontend and scalable backend architecture.
 
-🌐 **Live Demo**: [https://podbay-nextjs.onrender.com/](https://podbay-nextjs.onrender.com/)
+🌐 **Live Demo**: [https://podbay.bargush.me](https://podbay.bargush.me)
 
 ![Screenshot](SCREENSHOT.png)
 
@@ -210,8 +210,8 @@ npm run lint               # Run ESLint
 
 ## 🚀 Deployment
 
-The application is deployed on Render and can be accessed at:
-**https://podbay-nextjs.onrender.com/**
+The application is deployed and can be accessed at:
+**https://pdobay.bargush.me/**
 
 ### Production Commands
 
